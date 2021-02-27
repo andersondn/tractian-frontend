@@ -27,7 +27,7 @@ const useAssetFilter = (entrada: any): [a: IAsset[], b: Function] => {
         return result;
 
     }
-    const filteredData = entrada?.filter(assetFilter)
+    const filteredData = entrada? entrada.filter(assetFilter) : []
     return [filteredData, setFilter]
 }
 
