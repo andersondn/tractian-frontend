@@ -1,4 +1,4 @@
-import { Row, Col, Space, Select } from 'antd';
+import { Row, Col, Space, Select, Result, Spin } from 'antd';
 import useSWR from 'swr';
 import AssetsHealthChart from './AssetHealthChart';
 import { IAsset, IUnit, IUser } from '../../types';
@@ -9,10 +9,11 @@ import useAssetFilter from '../../hooks/useFilter';
 const { Option } = Select;
 
 const HomePage = () => {
-    const { data: assets } = useSWR<IAsset[]>('/asset')
+    const { data: assets, error } = useSWR<IAsset[]>('/asset')
     const { data: units } = useSWR<IUnit[]>('/unit')
     const { data: users } = useSWR<IUser[]>('/user')
     const [filteredAssets, setAssetFilter] = useAssetFilter(assets)
+    const isDataLoading = !error && !assets
 
     const layoutCard = {
         xs: { span: 24, offset: 0 },
@@ -20,7 +21,14 @@ const HomePage = () => {
         xl: { span: 12 },
 
     }
-
+    if (error) return (
+        <Result
+            status="500"
+            title="Erro ao carregar ativo."
+            subTitle="Por favor, verifique se o ativo existe e se o servidor está respondendo corretamente"
+        />
+    )
+    if (isDataLoading) return (<div className="center"><Spin /></div>)
     return (
         <>
             <h1>Home</h1>
