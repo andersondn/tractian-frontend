@@ -41,7 +41,7 @@ const UserForm = ({ user, isLoading = false, submitTitle = 'Enviar', handlerSubm
                 </Form.Item>
 
                 <Form.Item
-                    label="Usuário"
+                    label="Empresa"
                     name="companyId"
                     rules={[{ required: true, message: 'Por favor selecione um usuário.' }]}
                 >
