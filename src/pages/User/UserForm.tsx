@@ -43,7 +43,7 @@ const UserForm = ({ user, isLoading = false, submitTitle = 'Enviar', handlerSubm
                 <Form.Item
                     label="Empresa"
                     name="companyId"
-                    rules={[{ required: true, message: 'Por favor selecione um usuário.' }]}
+                    rules={[{ required: true, message: 'Por favor selecione uma empresa.' }]}
                 >
                     <Select defaultValue="">
                         <Option value="">Selecionar empresa</Option>
